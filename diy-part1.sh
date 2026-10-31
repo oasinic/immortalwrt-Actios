@@ -23,6 +23,10 @@ echo 'src-git store https://github.com/linkease/istore.git;main' >> feeds.conf.d
 
 # 调试
 # sed -i 's|src-git-full openstick https://github.com/lkiuyu/openstick-feeds.git|src-git-full openstick https://github.com/xuxin1955/openstick-feeds|g' feeds.conf.default
-
+# libffi перенесли в ядро upstream, в дереве lkiuyu его нет — берём из immortalwrt
+git clone --depth 1 --filter=blob:none --sparse https://github.com/immortalwrt/immortalwrt.git /tmp/imm-libffi
+git -C /tmp/imm-libffi sparse-checkout set package/libs/libffi
+mkdir -p package/libs
+cp -r /tmp/imm-libffi/package/libs/libffi package/libs/
 
 
